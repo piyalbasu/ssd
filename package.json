@@ -1,0 +1,35 @@
+{
+	"name": "SSD",
+	"description": "SSD just SSD's...It automates the creation of Site Support Document",
+	"version": "0.1.0",
+	"author": {
+		"name": "Piyal Basu",
+		"email": "pbasu@grey.com"
+	},
+	"keywords": [
+		"SSD"
+	],
+
+	"repository": {
+		"type": "git",
+		"url": "http://github.grey.com/pbasu/SSD.git"
+	},
+	"private": true,
+
+	"main": "ssd.js",
+
+	"engines": {
+		"node": ">=0.10"
+	},
+
+	"dependencies": {
+		"cheerio": "0.13.x",
+		"image-size": "0.2.x",
+		"q": "1.0.x",
+		"request": "2.33.x",
+		"jsdom": "0.10.x"
+	},
+
+	"devDependencies": {
+	}
+}
