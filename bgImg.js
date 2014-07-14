@@ -17,17 +17,19 @@ options.path = (process.argv[2]) ? process.argv[2] : '/_Assets/css/main.css';
 var bgImg = (function(){
 
 	return {
+
 		getSelector : function () {
 			for (var i = cleanArray.length - 1; i >= 0; i--) {
-				console.log(imgSelectors.indexOf(cleanArray[i]));
+				//console.log(imgSelectors.indexOf(cleanArray[i]));
 				if(imgSelectors.indexOf(cleanArray[i]) === -1){
 					//push just the selector if it's not already in there
 					var justSel = cleanArray[i].split('{');
-					imgSelectors.push(justSel[0]);
+					var cleanSel = justSel[0].replace(/\n/g, '').replace(/\t/g, '');
+					imgSelectors.push(cleanSel);
 				}
 
 				if (i === 0) {
-
+					//console.log(imgSelectors);
 				}
 			};
 
@@ -75,4 +77,4 @@ var bgImg = (function(){
 
 bgImg.init();
 module.exports.imgSelectors = imgSelectors;
-module.exports = bgImg.init;
+//module.exports = bgImg.init;
