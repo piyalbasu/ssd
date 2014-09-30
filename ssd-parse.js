@@ -11,20 +11,20 @@ function pathTrim(input) {
 	return input.substring(input.lastIndexOf('/'))
 }
 
-function parseCss(url) {
-	 console.log(bgImg.imgSelectors);
-	// if (bgImg.imgSelectors) {
-	// 	for (var i = tempSelArray.length - 1; i >= 0; i--) {
-	// 		if (bgImg.imgUrlSelectors.indexOf(tempSelArray[i]) < 0){
-	// 			//imgUrlSelectors.push(tempSelArray[i]);
-	// 		}
+// function parseCss(url) {
+// 	 console.log(bgImg.imgSelectors);
+// 	// if (bgImg.imgSelectors) {
+// 	// 	for (var i = tempSelArray.length - 1; i >= 0; i--) {
+// 	// 		if (bgImg.imgUrlSelectors.indexOf(tempSelArray[i]) < 0){
+// 	// 			//imgUrlSelectors.push(tempSelArray[i]);
+// 	// 		}
 
-	// 		if (i === 0) {
-	// 			//console.log(tempSelArray);
-	// 		}
-	// 	};
-	// }
-};
+// 	// 		if (i === 0) {
+// 	// 			//console.log(tempSelArray);
+// 	// 		}
+// 	// 	};
+// 	// }
+// };
 
 function countInArray(array, what) {
     var count = 0;
@@ -36,7 +36,8 @@ function countInArray(array, what) {
     return count;
 }
 
-function parse(url, callback) {
+function parse(url, sitename, callback) {
+
 	jsdom.env(
 		url, ['http://code.jquery.com/jquery.js'],
 		function(errors, window) {
@@ -106,6 +107,10 @@ function parse(url, callback) {
 			};
 
 			function getBgImg() {
+				for(i = 0; i < parseContent.css.length; i++) {
+					bgImg.init(sitename, parseContent.css[i]);
+				}
+
 				for(property in bgImg.imgSelectors){
 					var sel = property.replace(':hover', '');
 					if($(sel)) {
@@ -125,7 +130,7 @@ function parse(url, callback) {
 
 			getMeta('meta', url);
 			getImg('img', url);
-			getBgImg(bgImg.imgSelectors);
+			getBgImg();
 
 			if(typeof(callback) == "function"){
 				callback();

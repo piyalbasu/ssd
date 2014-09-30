@@ -1,5 +1,3 @@
-function test () {
-	return 'string'
-}
+var main = require('./main');
 
-console.log(test());
+console.log(main.siteName);

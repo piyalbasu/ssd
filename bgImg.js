@@ -1,10 +1,6 @@
 var jsdom = require('jsdom'),
 	fs = require('fs'),
 	http = require('http'),
-	options = {
-		host: 'www.cialis.com',
-		path: ''
-	},
 	cleanArray = [],
 	styleArray,
 	imgSelectors = {
@@ -13,7 +9,7 @@ var jsdom = require('jsdom'),
 	test = 'test';
 
 //pase an arg or default to a string
-options.path = (process.argv[2]) ? process.argv[2] : '/_Assets/css/main.css';
+
 
 
 var bgImg = (function() {
@@ -37,6 +33,7 @@ var bgImg = (function() {
 				}
 
 				if (i === 0) {
+					console.log();
 					//bgImg.getSelectorImages();
 				}
 			};
@@ -77,12 +74,18 @@ var bgImg = (function() {
 			});
 		},
 
-		init: function() {
+		init: function(hostParam, pathParam) {
+		var options = {
+			host: hostParam,
+			path: pathParam
+		};
+		//options.path = pathParam;
 			http.request(options, bgImg.callback).end();
 		}
 	}
 })();
 
-bgImg.init();
+//bgImg.init('www.cialis.com');
+module.exports.init = bgImg.init;
 module.exports.imgSelectors = imgSelectors;
 //module.exports = bgImg.init;
