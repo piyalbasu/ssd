@@ -11,19 +11,29 @@ var urlArray =
 	'http://www.cialis.com/about-ed-and-bph.aspx'
 ];
 
+function getSelectorImages(imgSelectors) {
+	for(var i = imgSelectors.length - 1; i >=0; i--){
+			var img = document.querySelector(imgSelectors[i]),
+			style = img.currentStyle || window.getComputedStyle(img, false),
+			bi = style.backgroundImage.slice(4, -1);
+		console.log(bi);
+	}
+}
+
 
 //callback when loop is over...this is nifty
 function urlToParse(i) {
 	if( i < urlArray.length){
 		ssdParse.parse(urlArray[i], function(){
 			urlToParse(i + 1);
-			console.log(bgImg.imgSelectors);
+
 		});
 	}
 	else {
 		//whaddya got for me?
 		//console.log(content);
 		cleanFirstArray(0);
+
 	}
 }
 

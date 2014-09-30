@@ -73,11 +73,11 @@ function parse(url, callback) {
 					description;
 				$(type).each(function() {
 					if ($(this).attr('name') === 'title') {
-						title = $(this).attr('parseContent');
+						title = $(this).attr('content');
 					}
 
 					if ($(this).attr('name') === 'description') {
-						description = $(this).attr('parseContent');
+						description = $(this).attr('content');
 					}
 					parseContent[url] = {
 						meta : {
@@ -105,6 +105,17 @@ function parse(url, callback) {
 				});
 			};
 
+			function getBgImg() {
+				for(property in bgImg.imgSelectors){
+					var sel = property.replace(':hover', '');
+					if($(sel)) {
+						var parseContentUrl = parseContent[url];
+						parseContentUrl.img.push(bgImg.imgSelectors[property]);
+						//console.log(bgImg.imgSelectors[property]);
+					}
+				}
+			};
+
 			//let's grab some stuff
 			getJs('script', 'src', parseContent.js);
 			getCss('link', 'href', parseContent.css, function(){
@@ -114,6 +125,7 @@ function parse(url, callback) {
 
 			getMeta('meta', url);
 			getImg('img', url);
+			getBgImg(bgImg.imgSelectors);
 
 			if(typeof(callback) == "function"){
 				callback();
@@ -123,8 +135,6 @@ function parse(url, callback) {
 		}
 	);
 }
-
-parse('http://www.cialis.com/');
 
 module.exports.parse = parse;
 module.exports.parseContent = parseContent;
