@@ -27,7 +27,9 @@
 		"image-size": "0.2.x",
 		"q": "1.0.x",
 		"request": "2.33.x",
-		"jsdom": "0.10.x"
+		"jsdom": "0.10.x",
+		"simplecrawler": "0.3.8",
+		"url": "0.10.1"
 	},
 
 	"devDependencies": {
